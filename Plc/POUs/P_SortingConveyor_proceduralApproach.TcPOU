@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_SortingConveyor_proceduralApproach" Id="{a6870da5-ce70-46d3-a507-c5f5b05064c0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_SortingConveyor_proceduralApproach
+VAR
+	stop AT%I* : BOOL;
+	emergency AT%I* : BOOL;
+	start AT%I* : BOOL;
+	productDetectedSensor AT%I* : BOOL;
+	conveyorFullSensor AT%I* : BOOL;
+	motorContactor AT%Q* : BOOL;
+	conveyorControl: BOOL;
+
+	timeout: TOF;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[	
+IF (NOT stop) OR (NOT emergency) THEN
+	conveyorControl	:=	FALSE;
+ELSIF start AND (stop) AND (emergency) THEN
+	conveyorControl	:=	TRUE;
+END_IF
+	
+timeout(IN:= conveyorControl AND productDetectedSensor, PT:= T#5S, Q=> , ET=> );
+
+motorContactor	:=	conveyorControl AND timeout.Q AND (NOT conveyorFullSensor);
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
