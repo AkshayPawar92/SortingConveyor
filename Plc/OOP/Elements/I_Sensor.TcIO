@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Sensor" Id="{b5c88b78-e437-49e5-95fc-4f9068651cbd}">
+    <Declaration><![CDATA[INTERFACE I_Sensor
+]]></Declaration>
+    <Property Name="isActive" Id="{e7245970-7437-4992-af4f-7275b0e63bc7}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{a9f3cd22-c8f4-4bf1-b2f1-86f98f841edb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="isInactive" Id="{afacba46-2b8b-442b-ba4a-1d0887f41add}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isInactive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4c1c4977-ca0b-40a5-b79f-c7ab0536be26}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

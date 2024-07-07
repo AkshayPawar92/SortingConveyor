@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="P_SortingConveyor_proceduralApproach" Id="{a6870da5-ce70-46d3-a507-c5f5b05064c0}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM P_SortingConveyor_proceduralApproach
+  <POU Name="PRG_SortingConveyor_proceduralApproach" Id="{a6870da5-ce70-46d3-a507-c5f5b05064c0}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_SortingConveyor_proceduralApproach
 VAR
 	stop AT%I* : BOOL;
 	emergency AT%I* : BOOL;

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PRG_OOPApproach" Id="{7301e5ab-1945-43b9-ab8b-eeadc2eb8f29}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PRG_OOPApproach
+VAR
+	stop : NormallyClosePushButton;
+	emergency : NormallyClosePushButton;
+	start : NormallyOpenPushButton;
+	productDetectedSensor : NormallyOpenSensor;
+	conveyorFullSensor : NormallyOpenSensor;
+	motorContactor : MotorControl;
+	conveyorControl: BOOL;
+
+	timeout: TOF;		
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[		
+	IF (stop.isPressed) OR (emergency.isPressed) THEN
+		conveyorControl	:=	FALSE;
+	ELSIF start.isPressed AND (stop.isReleased) AND (emergency.isReleased) THEN
+		conveyorControl	:=	TRUE;
+	END_IF
+		
+	timeout(IN:= conveyorControl AND productDetectedSensor.isActive, PT:= T#5S, Q=> , ET=> );
+
+	IF conveyorControl AND timeout.Q AND (conveyorFullSensor.isInactive) THEN
+		motorContactor.Start();	
+	ELSE
+		motorContactor.Stop();	
+	END_IF
+	
+
+
+
+
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

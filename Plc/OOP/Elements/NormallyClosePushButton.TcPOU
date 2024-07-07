@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="NormallyClosePushButton" Id="{81f79b6c-6478-4cc2-9179-24a5b6aa895f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK NormallyClosePushButton IMPLEMENTS I_PushButton
+VAR
+	input AT%I* : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="isPressed" Id="{ddf9cd05-5ad4-42e1-84cc-e3d3846bafcf}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isPressed : BOOL]]></Declaration>
+      <Get Name="Get" Id="{82c3a84a-9060-4e4e-90ed-7c9f0015d925}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isPressed	:=	NOT input;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="isReleased" Id="{4fda6a0e-42df-4db9-b30c-e24295e3562d}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isReleased : BOOL]]></Declaration>
+      <Get Name="Get" Id="{e187bf4f-eb66-4c38-8b2a-d3cfb1c4a8c3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isReleased	:=	input;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

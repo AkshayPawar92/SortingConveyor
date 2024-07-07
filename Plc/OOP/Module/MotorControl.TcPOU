@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MotorControl" Id="{5a51c125-03a7-4d40-a9ff-485e5602c3fb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK MotorControl IMPLEMENTS I_Motor
+VAR
+	OnOff AT%Q* : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <Method Name="Start" Id="{781b6612-0b89-49ea-af73-a8312f29dbf4}">
+      <Declaration><![CDATA[METHOD PUBLIC Start
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[OnOff	:=	TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="stop" Id="{b2468803-54da-4f91-be8b-d8e603f4555e}">
+      <Declaration><![CDATA[METHOD PUBLIC stop : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[OnOff := FALSE;
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

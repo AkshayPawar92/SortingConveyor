@@ -1,9 +1,63 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.50" ClassName="CNestedPlcProjDef">
 	<Project GUID="{501A6990-64C2-41C3-9133-B3DF888FD478}" Name="Plc" PrjFilePath="..\..\Plc\Plc.plcproj" TmcFilePath="..\..\Plc\Plc.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{4C8E791C-CDAC-1A80-82D5-3350EE9AC13B}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Plc\Plc.tmc" TmcHash="{F4187299-E515-4B6F-6198-25C48A465F9D}">
 			<Name>Plc Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Vars VarGrpType="1">
+				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>PRG_SortingConveyor_proceduralApproach.stop</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SortingConveyor_proceduralApproach.emergency</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SortingConveyor_proceduralApproach.start</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SortingConveyor_proceduralApproach.productDetectedSensor</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_SortingConveyor_proceduralApproach.conveyorFullSensor</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_OOPApproach.stop.input</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_OOPApproach.emergency.input</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_OOPApproach.start.input</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_OOPApproach.productDetectedSensor.input</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_OOPApproach.conveyorFullSensor.input</Name>
+					<Type>BOOL</Type>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2" AreaNo="1">
+				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>PRG_SortingConveyor_proceduralApproach.motorContactor</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PRG_OOPApproach.motorContactor.OnOff</Name>
+					<Type>BOOL</Type>
+				</Var>
+			</Vars>
 			<Contexts>
 				<Context>
 					<Id>0</Id>

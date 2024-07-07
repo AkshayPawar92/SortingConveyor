@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="NormallyCloseSensor" Id="{27d68386-078b-4b0e-9b32-dae4341498a7}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK NormallyCloseSensor IMPLEMENTS I_Sensor
+VAR
+	input AT%I* : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="isActive" Id="{a6e23d46-d44d-4311-a84a-a94077605d34}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isActive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{78200d89-d84b-4ce4-ad38-d9bc5dbe3a7d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isActive	:=	NOT input;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="isInactive" Id="{e5bb11c5-0b05-48eb-8819-d0266e029a89}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isInactive : BOOL]]></Declaration>
+      <Get Name="Get" Id="{e707d06b-35d1-4505-b6fb-ecccfa276ab9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isInactive	:=	input;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
