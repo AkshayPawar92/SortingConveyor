@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="SortingConveyor" Id="{36783fe2-4534-4a36-b7bd-cd61d6fc35ac}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK SortingConveyor
+VAR_INPUT
+	stop : I_PushButton;
+	emergency : I_PushButton;
+	start : I_PushButton;
+	productDetectedSensor : I_Sensor;
+	conveyorFullSensor : I_Sensor;
+	motorContactor : I_Motor;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR	
+	conveyorControl: BOOL;
+	timeout: TOF;		
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[		
+	IF (stop.isPressed) OR (emergency.isPressed) THEN
+		conveyorControl	:=	FALSE;
+	ELSIF start.isPressed AND (stop.isReleased) AND (emergency.isReleased) THEN
+		conveyorControl	:=	TRUE;
+	END_IF
+		
+	timeout(IN:= conveyorControl AND productDetectedSensor.isActive, PT:= T#5S, Q=> , ET=> );
+
+	IF conveyorControl AND timeout.Q AND (conveyorFullSensor.isInactive) THEN
+		motorContactor.Start();	
+	ELSE
+		motorContactor.Stop();	
+	END_IF
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{d81e59b6-d3ae-43da-b06e-f7810430ec03}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+
+	stop : I_PushButton;
+	emergency : I_PushButton;
+	start : I_PushButton;
+	productDetectedSensor : I_Sensor;
+	conveyorFullSensor : I_Sensor;
+	motorContactor : I_Motor;
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+	THIS^.stop 						:=	stop 					; 
+	THIS^.emergency 				:=  emergency 				;
+	THIS^.start 					:=  start 					;
+	THIS^.productDetectedSensor 	:=  productDetectedSensor 	;
+	THIS^.conveyorFullSensor 		:=  conveyorFullSensor 		;
+	THIS^.motorContactor 			:=  motorContactor 			;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

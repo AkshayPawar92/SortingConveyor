@@ -42,6 +42,9 @@
     <Compile Include="OOP\Module\MotorControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OOP\Module\SortingConveyor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="OOP\PRG_OOPApproach.TcPOU">
       <SubType>Code</SubType>
     </Compile>

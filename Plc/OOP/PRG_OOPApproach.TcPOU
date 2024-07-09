@@ -5,31 +5,59 @@
 VAR
 	stop : NormallyClosePushButton;
 	emergency : NormallyClosePushButton;
+	stopNO : NormallyOpenPushButton;
+	emergencyNO : NormallyOpenPushButton;
 	start : NormallyOpenPushButton;
 	productDetectedSensor : NormallyOpenSensor;
 	conveyorFullSensor : NormallyOpenSensor;
 	motorContactor : MotorControl;
-	conveyorControl: BOOL;
-
-	timeout: TOF;		
+	
+	SortingConveyor: SortingConveyor (stop, emergency, start, productDetectedSensor, conveyorFullSensor, motorContactor);
+	
+//	conveyorControl: BOOL;
+//	timeout: TOF;	
+	
+	
+	useSpareSensor: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[		
-	IF (stop.isPressed) OR (emergency.isPressed) THEN
-		conveyorControl	:=	FALSE;
-	ELSIF start.isPressed AND (stop.isReleased) AND (emergency.isReleased) THEN
-		conveyorControl	:=	TRUE;
-	END_IF
-		
-	timeout(IN:= conveyorControl AND productDetectedSensor.isActive, PT:= T#5S, Q=> , ET=> );
+      <ST><![CDATA[	
+IF NOT useSpareSensor THEN
+	SortingConveyor (	
+		stop:= stop, 
+		emergency:= emergency, 
+		start:= start, 
+		productDetectedSensor:= productDetectedSensor, 
+		conveyorFullSensor:= conveyorFullSensor, 
+		motorContactor:= motorContactor	);
+ELSE
+	SortingConveyor (	
+		stop:= stopNO, 
+		emergency:= emergencyNO, 
+		start:= start, 
+		productDetectedSensor:= productDetectedSensor, 
+		conveyorFullSensor:= conveyorFullSensor, 
+		motorContactor:= motorContactor	);	
+END_IF
 
-	IF conveyorControl AND timeout.Q AND (conveyorFullSensor.isInactive) THEN
-		motorContactor.Start();	
-	ELSE
-		motorContactor.Stop();	
-	END_IF
+
+//	IF (stop.isPressed) OR (emergency.isPressed) THEN
+//		conveyorControl	:=	FALSE;
+//	ELSIF start.isPressed AND (stop.isReleased) AND (emergency.isReleased) THEN
+//		conveyorControl	:=	TRUE;
+//	END_IF
+		
+//	timeout(IN:= conveyorControl AND productDetectedSensor.isActive, PT:= T#5S, Q=> , ET=> );
+
+//	IF conveyorControl AND timeout.Q AND (conveyorFullSensor.isInactive) THEN
+//		motorContactor.Start();	
+//	ELSE
+//		motorContactor.Stop();	
+//	END_IF
 	
+
+
 
 
 
